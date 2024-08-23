@@ -23,11 +23,11 @@ import Riopi from "riopi";
 const riopi = new Riopi("Your RIOT_TOKEN", "EUROPE");
 
 riopi.getAccountByAccessToken("ACCESS_TOKEN").then(account => {
-	if (typeof account == "string") console.log(`Account: ${account}`);
+  if (typeof account == "string") console.log(`Account: ${account}`);
   else {
     console.log(`Puuid: ${account.puuid}`);
     console.log(`Pseudo: ${account.gameName && account.tagLine ? `${account.gameName}#${account.tagLine}` : "Anonymous"}`);
-	}
+  }
 });
 ```
 
@@ -39,11 +39,11 @@ import Riopi from "riopi";
 const riopi = new Riopi("Your RIOT_TOKEN", "EUROPE");
 
 riopi.getAccountByPuuid("PUUID").then(account => {
-	if (typeof account == "string") console.log(`Account: ${account}`);
+  if (typeof account == "string") console.log(`Account: ${account}`);
   else {
     console.log(`Puuid: ${account.puuid}`);
     console.log(`Pseudo: ${account.gameName && account.tagLine ? `${account.gameName}#${account.tagLine}` : "Anonymous"}`);
-	}
+  }
 });
 ```
 
@@ -55,11 +55,11 @@ import Riopi from "riopi";
 const riopi = new Riopi("Your RIOT_TOKEN", "EUROPE");
 
 riopi.getAccountByRiotId("GAME_NAME", "TAG_LINE").then(account => {
-	if (typeof account == "string") console.log(`Account: ${account}`);
+  if (typeof account == "string") console.log(`Account: ${account}`);
   else {
     console.log(`Puuid: ${account.puuid}`);
     console.log(`Pseudo: ${account.gameName && account.tagLine ? `${account.gameName}#${account.tagLine}` : "Anonymous"}`);
-	}
+  }
 });
 ```
 
@@ -71,7 +71,7 @@ import Riopi from "riopi";
 const riopi = new Riopi("Your RIOT_TOKEN", "EUROPE");
 
 riopi.getPlayerActiveShard(Games.Valorant, "PUUID").then(player => {
-	if (typeof player == "string") console.log(`Response: ${player}`);
+  if (typeof player == "string") console.log(`Response: ${player}`);
   else console.log(`Active shard: ${player.activeShard}`);
 });
 ```
