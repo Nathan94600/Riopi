@@ -1,0 +1,32 @@
+{
+  "name": "riopi",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "riot",
+    "game",
+    "riot games",
+    "node"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nathan94600/Riopi.git"
+  },
+  "author": "Nathan94600",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nathan94600/Riopi/issues"
+  },
+  "homepage": "https://github.com/Nathan94600/Riopi#readme",
+  "description": "Riopi is a Node.js module for interacting with Riot Game API (not the games).",
+  "dependencies": {
+    "@types/node": "^22.4.0"
+  }
+}
