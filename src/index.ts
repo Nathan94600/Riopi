@@ -148,7 +148,7 @@ function getAccountByAccessToken(cache: Cache, rateLimits: RateLimits, region: R
  */
 function getPlayerActiveShard(cache: Cache, rateLimits: RateLimits, region: Region, game: Games, puuid: Puuid, riotToken: string): Promise<ActiveShard | string> {
 	return new Promise((resolve, reject) => {
-		const rateLimit = rateLimits[region], cacheValue = cache.playerActiveShard[region][puuid];
+		const rateLimit = rateLimits[region], cacheValue = cache.playerActiveShard[region][game][puuid];
 
 		if (cacheValue?.lastUpdate && cacheValue.lastUpdate + 300000 <= Date.now()) resolve(cacheValue);
 		else if (rateLimit.app[0].count >= rateLimit.app[0].max || rateLimit.app[1].count >= rateLimit.app[1].max) reject("App Rate Limit");
@@ -166,7 +166,7 @@ function getPlayerActiveShard(cache: Cache, rateLimits: RateLimits, region: Regi
 					else {
 						const platformData: ActiveShard = { activeShard: json.activeShard, game: json.game, puuid: json.puuid };
 
-						cache.playerActiveShard[region][puuid] = { ...platformData, lastUpdate: Date.now() };
+						cache.playerActiveShard[region][game][puuid] = { ...platformData, lastUpdate: Date.now() };
 						
 						resolve(platformData);
 					}
@@ -221,7 +221,7 @@ export default class Riopi {
 			accountByAccessToken: { AMERICAS: {}, ASIA: {}, ESPORTS: {}, EUROPE: {} },
 			accountByPuuid: { AMERICAS: {}, ASIA: {}, ESPORTS: {}, EUROPE: {} },
 			accountByRiotId: { AMERICAS: {}, ASIA: {}, ESPORTS: {}, EUROPE: {} },
-			playerActiveShard: { AMERICAS: {}, ASIA: {}, ESPORTS: {}, EUROPE: {} }
+			playerActiveShard: { AMERICAS: { lor: {}, val: {} }, ASIA: { lor: {}, val: {} }, ESPORTS: { lor: {}, val: {} }, EUROPE: { lor: {}, val: {} } }
 		}
 	}
 
@@ -287,7 +287,7 @@ interface Cache {
 	accountByPuuid: Record<Region, Record<string, Account & { lastUpdate: number }>>;
 	accountByRiotId: Record<Region, Record<string, Account & { lastUpdate: number }>>;
 	accountByAccessToken: Record<Region, Record<string, Account & { lastUpdate: number }>>;
-	playerActiveShard: Record<Region, Record<Puuid, ActiveShard & { lastUpdate: number }>>;
+	playerActiveShard: Record<Region, Record<Games, Record<Puuid, ActiveShard & { lastUpdate: number }>>>;
 };
 
 interface RateLimit {
